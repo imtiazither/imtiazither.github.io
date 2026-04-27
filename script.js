@@ -20,7 +20,9 @@ const resumeModal = document.querySelector("#resume-modal");
 const resumeOpeners = [...document.querySelectorAll("[data-resume-open]")];
 const resumeClosers = [...document.querySelectorAll("[data-resume-close]")];
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const touchPressMedia = window.matchMedia("(hover: none), (pointer: coarse)");
 const themeStorageKey = "nafiz-personal-theme";
+const pressedSurfaceSelector = ".paper";
 let lastResumeTrigger = null;
 const journeyWalkerState = {
   targetY: 0,
@@ -162,16 +164,23 @@ function updateJourneyProgress() {
     updateJourneyWalkerTarget(walkerY);
   }
 
-  journeyItems.forEach((item) => {
+  let activeJourneyIndex = -1;
+
+  journeyItems.forEach((item, index) => {
     const point = item.querySelector(".journey-item__point");
     const pointRect = point?.getBoundingClientRect();
     const itemRect = item.getBoundingClientRect();
     const pointY = pointRect
       ? pointRect.top + pointRect.height / 2
       : itemRect.top + itemRect.height / 2;
-    const hasReachedMidpoint = pointY <= lineTip + 1;
-    const hasCrossedTopBorder = itemRect.top < 0;
-    const isActive = hasReachedMidpoint && !hasCrossedTopBorder;
+
+    if (pointY <= lineTip + 1) {
+      activeJourneyIndex = index;
+    }
+  });
+
+  journeyItems.forEach((item, index) => {
+    const isActive = index === activeJourneyIndex;
     const wasActive = item.classList.contains("is-active");
 
     if (isActive && !wasActive && !reduceMotion) {
@@ -196,6 +205,36 @@ function updateJourneyProgress() {
     }
 
     item.classList.toggle("is-active", isActive);
+  });
+}
+
+function clearPressedSurfaces(exceptElement = null) {
+  document.querySelectorAll(`${pressedSurfaceSelector}.is-pressed`).forEach((surface) => {
+    if (surface !== exceptElement) {
+      surface.classList.remove("is-pressed");
+    }
+  });
+}
+
+function setupTouchPressStates() {
+  if (!touchPressMedia.matches) return;
+
+  document.addEventListener("pointerdown", (event) => {
+    const pressedSurface = event.target.closest(pressedSurfaceSelector);
+
+    clearPressedSurfaces(pressedSurface);
+
+    if (pressedSurface) {
+      pressedSurface.classList.add("is-pressed");
+    }
+  });
+
+  document.addEventListener("pointercancel", () => {
+    clearPressedSurfaces();
+  });
+
+  window.addEventListener("blur", () => {
+    clearPressedSurfaces();
   });
 }
 
@@ -379,6 +418,7 @@ setupParallax();
 setupMenu();
 setupForm();
 setupResumeModal();
+setupTouchPressStates();
 handleScroll();
 
 window.addEventListener("scroll", handleScroll, { passive: true });
