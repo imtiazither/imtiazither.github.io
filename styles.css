@@ -1898,15 +1898,18 @@ body.resume-modal-open {
 }
 
 .work-card a,
-.contact-paper a {
+.contact-paper a,
+.resume-sheet a {
   color: var(--primary);
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.18em;
+  overflow-wrap: anywhere;
 }
 
 .work-card a:hover,
-.contact-paper a:hover {
+.contact-paper a:hover,
+.resume-sheet a:hover {
   color: var(--tertiary);
 }
 
