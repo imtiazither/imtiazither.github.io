@@ -2,6 +2,8 @@
 
 This is a static personal website starter built as an easy-to-edit first version.
 
+You can visit the website by clicking here: https://imtiazither.github.io/
+
 Files:
 
 - `index.html` - page structure and placeholder content
