@@ -4,6 +4,8 @@ This is a static personal website starter built as an easy-to-edit first version
 
 You can visit the website by clicking here: https://imtiazither.github.io/
 
+Just don't use any personal information or picture without my permission. Thank you.
+
 Files:
 
 - `index.html` - page structure and placeholder content
