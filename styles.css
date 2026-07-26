@@ -265,7 +265,7 @@ button {
 .site-nav {
   display: inline-flex;
   align-items: center;
-  gap: 1.45rem;
+  gap: clamp(0.85rem, 1.6vw, 1.45rem);
   color: var(--muted);
 }
 
@@ -1171,6 +1171,30 @@ blockquote {
   --sticker-tilt: -8deg;
 }
 
+.sticker--projects-monitor {
+  top: 4rem;
+  right: 2rem;
+  --sticker-tilt: 8deg;
+}
+
+.sticker--projects-notebook {
+  top: 16rem;
+  left: 1rem;
+  --sticker-tilt: -8deg;
+}
+
+.sticker--projects-pen {
+  bottom: 4rem;
+  left: 42%;
+  --sticker-tilt: 9deg;
+}
+
+.sticker--projects-spark {
+  top: 26rem;
+  right: 32%;
+  --sticker-tilt: -9deg;
+}
+
 .sticker--journey-pen {
   top: 5rem;
   right: 1rem;
@@ -1884,6 +1908,235 @@ body.resume-modal-open {
   --paper-offset: -1rem;
 }
 
+.project-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
+  gap: clamp(1.2rem, 3vw, 2rem);
+  align-items: center;
+  margin-top: 2.4rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(186, 237, 226, 0.36), rgba(255, 248, 241, 0.66)),
+    var(--surface);
+}
+
+[data-theme="dark"] .project-card {
+  background:
+    linear-gradient(135deg, rgba(41, 68, 62, 0.42), rgba(36, 26, 17, 0.86)),
+    var(--surface-container);
+}
+
+.project-card__copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.project-card__copy h3 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 0.98;
+}
+
+.project-card__copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.project-points {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-points li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.project-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 50%;
+  background: var(--primary-container);
+  box-shadow: 0 0 0 0.28rem rgba(254, 157, 124, 0.13);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 0.55rem;
+}
+
+.project-launch {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: fit-content;
+  min-height: 4.15rem;
+  padding: 0.7rem 1.25rem 0.7rem 0.8rem;
+  border-radius: 1.5rem;
+  color: var(--text);
+  background: linear-gradient(135deg, rgba(255, 247, 229, 0.98), rgba(254, 238, 213, 0.96));
+  box-shadow:
+    0 16px 28px rgba(120, 90, 40, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.58);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease;
+  isolation: isolate;
+}
+
+.project-launch::before,
+.project-launch::after {
+  content: "";
+  position: absolute;
+  inset: auto 0.7rem -0.25rem;
+  height: 100%;
+  border-radius: 1.45rem;
+  z-index: -1;
+}
+
+.project-launch::before {
+  background: rgba(255, 229, 196, 0.72);
+  transform: rotate(-2.5deg);
+}
+
+.project-launch::after {
+  inset: auto 1rem -0.45rem;
+  background: rgba(186, 237, 226, 0.44);
+  transform: rotate(2.25deg);
+}
+
+.project-launch:hover {
+  transform: translateY(-3px);
+  filter: saturate(1.04);
+  box-shadow:
+    0 24px 36px rgba(120, 90, 40, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.62);
+}
+
+.project-launch:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 4px rgba(254, 157, 124, 0.22),
+    0 24px 36px rgba(120, 90, 40, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.62);
+}
+
+.project-launch__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 1rem;
+  color: var(--primary);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7),
+    0 0.55rem 1rem rgba(149, 73, 46, 0.12);
+}
+
+.project-launch__icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.project-launch__icon--github svg {
+  fill: currentColor;
+  stroke: none;
+}
+
+.project-launch__copy {
+  display: grid;
+  gap: 0.1rem;
+  text-align: left;
+}
+
+.project-launch__eyebrow {
+  color: var(--tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.project-launch__title {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="dark"] .project-launch {
+  background: linear-gradient(135deg, rgba(55, 38, 27, 0.98), rgba(37, 27, 19, 0.96));
+  box-shadow:
+    0 24px 34px rgba(0, 0, 0, 0.32),
+    0 0 24px rgba(254, 157, 124, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .project-launch::before {
+  background: rgba(78, 52, 37, 0.72);
+}
+
+[data-theme="dark"] .project-launch::after {
+  background: rgba(41, 68, 62, 0.52);
+}
+
+[data-theme="dark"] .project-launch__icon {
+  background: rgba(255, 248, 241, 0.08);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 0.55rem 1rem rgba(0, 0, 0, 0.24);
+}
+
+.project-card__visual {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+.project-card__visual img {
+  width: 100%;
+  aspect-ratio: 1.9 / 1;
+  object-fit: cover;
+  border-radius: 1.35rem;
+  box-shadow:
+    0 24px 44px rgba(57, 50, 33, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .project-card__visual img {
+  box-shadow:
+    0 28px 48px rgba(0, 0, 0, 0.36),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.project-card__visual figcaption {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
 .future-card h3,
 .journey-item__body h3,
 .work-card h3 {
@@ -2462,6 +2715,7 @@ blockquote {
   .hero__shell,
   .about-layout,
   .future-grid,
+  .project-card,
   .journey-item,
   .contact-layout {
     grid-template-columns: 1fr;
@@ -2504,9 +2758,14 @@ blockquote {
 
   .future-card:nth-child(2),
   .future-card:nth-child(3),
+  .project-card,
   .work-card--wide,
   .work-grid > .work-card:nth-child(3) {
     --paper-offset: 0px;
+  }
+
+  .project-card__visual {
+    order: -1;
   }
 
   .journey {
@@ -2702,6 +2961,8 @@ blockquote {
   .sticker--about-laptop,
   .sticker--future-monitor,
   .sticker--future-bookmark,
+  .sticker--projects-monitor,
+  .sticker--projects-spark,
   .sticker--journey-monitor,
   .sticker--journey-spark,
   .sticker--work-closed,
@@ -2713,6 +2974,10 @@ blockquote {
 
   .scroll-prompt {
     display: none;
+  }
+
+  .project-launch {
+    width: 100%;
   }
 
   .work-grid {
