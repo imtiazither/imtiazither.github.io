@@ -1698,39 +1698,6 @@ body.resume-modal-open {
     radial-gradient(circle at bottom left, rgba(255, 217, 125, 0.16), transparent 20rem);
 }
 
-.resume-modal__scroll--pdf {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  gap: 0.9rem;
-  overflow: hidden;
-}
-
-.resume-pdf-frame {
-  width: 100%;
-  height: 100%;
-  min-height: 34rem;
-  border: 0;
-  border-radius: 1.45rem;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow:
-    0 24px 46px rgba(120, 90, 40, 0.1),
-    inset 0 0 0 1px rgba(149, 73, 46, 0.08);
-}
-
-.resume-pdf-fallback {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.92rem;
-  text-align: center;
-}
-
-.resume-pdf-fallback a {
-  color: var(--primary);
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-}
-
 .resume-sheet {
   width: min(100%, 56rem);
   margin: 0 auto;
@@ -1848,6 +1815,16 @@ body.resume-modal-open {
   padding-left: 1.35rem;
 }
 
+.resume-publication-group {
+  margin: 1.1rem 0 0.65rem;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
 .resume-sheet__footnote {
   margin-top: 1rem;
   font-size: 0.95rem;
@@ -1874,14 +1851,6 @@ body.resume-modal-open {
 [data-theme="dark"] .resume-modal__header {
   background: rgba(31, 23, 16, 0.8);
   border-bottom-color: rgba(255, 232, 205, 0.08);
-}
-
-[data-theme="dark"] .resume-pdf-frame {
-  background: rgba(16, 13, 8, 0.94);
-  box-shadow:
-    0 26px 46px rgba(0, 0, 0, 0.36),
-    0 0 28px rgba(254, 157, 124, 0.08),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
 }
 
 [data-theme="dark"] .resume-modal__download,
@@ -3052,15 +3021,6 @@ blockquote {
 
   .resume-modal__scroll {
     padding: 1rem;
-  }
-
-  .resume-modal__scroll--pdf {
-    gap: 0.75rem;
-  }
-
-  .resume-pdf-frame {
-    min-height: 28rem;
-    border-radius: 1rem;
   }
 
   .resume-sheet {
