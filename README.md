@@ -4,7 +4,7 @@ This is a static personal website starter built as an easy-to-edit first version
 
 You can view the website from this link - https://imtiazither.github.io/
 
-Files:
+Files and its structures:
 
 - `index.html` - page structure and placeholder content
 - `styles.css` - layout, motion, glass styling, and responsive behavior
