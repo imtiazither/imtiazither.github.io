@@ -11,7 +11,6 @@ Files and its structures:
 - `script.js` - scroll line progress, reveal animations, nav highlighting, and mobile menu
 - `assets/` - optimized website images, CV PDF, and selected linked paper PDFs
 
-
 How to use:
 
 1. Open `index.html` in a browser.
